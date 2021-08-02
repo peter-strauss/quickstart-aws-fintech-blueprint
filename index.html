@@ -838,34 +838,34 @@ p.footer-text a{color:#d7d8d8}
 </li>
 <li><a href="#_deployment_steps">Deployment steps</a>
 <ul class="sectlevel2">
-<li><a href="#_planning_the_deployment_2">Planning the deployment</a></li>
+<li><a href="#_confirm_your_aws_account_configuration">Confirm your AWS account configuration</a></li>
+<li><a href="#_install_the_aws_cdk_and_bootstrap_the_aws_cdk_toolkit_stack">Install the AWS CDK and bootstrap the AWS CDK Toolkit stack</a></li>
 <li><a href="#_launch_the_quick_start">Launch the Quick Start</a></li>
 </ul>
 </li>
 <li><a href="#_post_deployment_steps">Post-deployment steps</a>
 <ul class="sectlevel2">
 <li><a href="#_connect_to_the_vpn">Connect to the VPN</a></li>
+<li><a href="#_optional_modify_the_default_configurations">(Optional) Modify the default configurations</a></li>
+<li><a href="#_recommended_delete_the_default_vpc">(Recommended) Delete the default VPC</a></li>
 </ul>
 </li>
-<li><a href="#_security_and_compliance">Security and Compliance.</a>
+<li><a href="#_security_and_compliance">Security and compliance</a>
 <ul class="sectlevel2">
-<li><a href="#_notes_on_the_operational_best_practices_for_pci_dss_3_2_1_pack">Notes on the Operational Best Practices for PCI-DSS-3.2.1 pack</a></li>
+<li><a href="#_conformance_pack_operational_best_practices_for_pci_dss_3_2_1">Conformance pack: Operational Best Practices for PCI DSS 3.2.1</a></li>
 </ul>
 </li>
 <li><a href="#_other_useful_information">Other useful information</a>
 <ul class="sectlevel2">
 <li><a href="#_where_to_go_from_here">Where to go from here?</a></li>
-<li><a href="#_optional_dns_setup">(Optional) DNS Setup</a></li>
-<li><a href="#_optional_enable_fintech_blueprint_informatics_catalog">(Optional) Enable Fintech Blueprint Informatics Catalog</a></li>
-<li><a href="#_optional_delete_the_default_vpc">(Optional) Delete the "Default VPC"</a></li>
-</ul>
-</li>
-<li><a href="#_region_restriction_capabilities">Region Restriction Capabilities</a>
-<ul class="sectlevel2">
-<li><a href="#_region_restriction_capabilities_in_multi_account_configurations">Region Restriction Capabilities in Multi Account Configurations:</a></li>
+<li><a href="#_optional_set_up_dns">(Optional) Set up DNS</a></li>
+<li><a href="#_optional_set_up_permissions_for_the_aws_service_catalog">(Optional) Set up permissions for the AWS Service Catalog</a></li>
+<li><a href="#_optional_deploy_the_swift_client_connectivity_quick_start">(Optional) Deploy the SWIFT Client Connectivity Quick Start</a></li>
+<li><a href="#_optional_restrict_iam_actions_to_specific_aws_regions">(Optional) Restrict IAM actions to specific AWS Regions</a></li>
 </ul>
 </li>
 <li><a href="#_faq">FAQ</a></li>
+<li><a href="#_customer_responsibility">Customer responsibility</a></li>
 <li><a href="#_send_us_feedback">Send us feedback</a></li>
 <li><a href="#_quick_start_reference_deployments">Quick Start reference deployments</a></li>
 <li><a href="#_github_repository">GitHub repository</a></li>
@@ -884,8 +884,8 @@ p.footer-text a{color:#d7d8d8}
 </div>
 </div>
 <div class="paragraph text-center">
-<p><strong>July 2021</strong><br>
-<em>Paul Underwood, Yinal Ozkan, Manish Chugh, AWS Startup team</em><br>
+<p><strong>August 2021</strong><br>
+<em>Paul Underwood, Yinal Ozkan, and Manish Chugh, AWS Startup team</em><br>
 <em>Shivansh Singh, AWS Quick Start team</em></p>
 </div>
 <div class="admonitionblock tip text-left">
@@ -913,13 +913,7 @@ report bugs, or submit feature ideas for this Quick Start.
 <p>This guide provides instructions for deploying the Fintech Blueprint Quick Start reference architecture on the AWS Cloud.</p>
 </div>
 <div class="paragraph">
-<p>This Quick Start is for Fintech startups looking for a turnkey environment in the cloud following AWS and industry best practices on day 1.</p>
-</div>
-<div class="paragraph">
-<p>The Fintech Blueprint core landing zone builds out a secure home to develop or host B2B or B2C Fintech services in under 15 minutes. That includes identity management and  access control, encryption, VPN, network isolation, logging, alarms, DNS, and built-in compliance auditing.</p>
-</div>
-<div class="paragraph">
-<p>Optionally, we have also included a number of Fintech tools tools from commercial and opensource communities. These tools are made available through the AWS Service Catalog after deploying the core landing zone.</p>
+<p>This Quick Start is for teams and individuals responsible for developing or hosting business-to-business (B2B) or business-to-consumer (B2C) products for a financial-technology (fintech) company. It helps you build a secure cloud environment following AWS and industry best practices.</p>
 </div>
 </div>
 </div>
@@ -927,7 +921,13 @@ report bugs, or submit feature ideas for this Quick Start.
 <h2 id="_fintech_blueprint_on_aws">Fintech Blueprint on AWS</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The AWS Fintech Blueprint Quick Start helps you deploy a turnkey landing zone and Fintech tooling on the AWS Cloud following AWS and industry best practices on Day 1.</p>
+<p>The Fintech Blueprint Quick Start is called a blueprint because its architecture is analogous to an empty house. After you deploy it, you furnish it with the resources you need for your product or service.</p>
+</div>
+<div class="paragraph">
+<p>The architecture has partitioned virtual private clouds (VPCs) that separate fintech production, management, and development processes. The Quick Start configures this architecture for identity management, virtual private network (VPN) access control, encryption, network isolation, logging, alarms, and compliance auditing.</p>
+</div>
+<div class="paragraph">
+<p>You can develop or host your B2B or B2C fintech products in this environment. In addition, you can use the <a href="https://aws.amazon.com/servicecatalog/" target="_blank" rel="noopener">AWS Service Catalog</a> to install prepackaged financial tools from leading fintech software vendors and open-source tools. You can also launch any applicable AWS Quick Start—such as <a href="https://fwd.aws/4bpjr?" target="_blank" rel="noopener">SWIFT Client Connectivity</a>—from the link provided on its webpage or in its deployment guide.</p>
 </div>
 </div>
 </div>
@@ -962,11 +962,10 @@ After you deploy the Quick Start, create <a href="https://docs.aws.amazon.com/aw
 <h2 id="_software_licenses">Software licenses</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The core of the Fintech Blueprint is released under the Apache License 2.0. The tools listed in the Fintech Blueprint Service Catalog have different licensing terms.</p>
+<p>The Fintech Blueprint Quick Start is released under Apache License 2.0.</p>
 </div>
 <div class="paragraph">
-<p><strong>License Information</strong>
-The optional SWIFT Client Connectivity on AWS made available through the Service Catalog requires a SWIFT account and software license. To register for a SWIFT account, see <a href="https://www.swift.com/myswift/how-to-become-a-swift_com-user_" target="_blank" rel="noopener">How to become a swift.com user?</a></p>
+<p>The Fintech Blueprint Software Catalog portfolio in the AWS Service Catalog includes the <a href="https://fwd.aws/4bpjr?" target="_blank" rel="noopener">SWIFT Client Connectivity</a> Quick Start. This software requires a SWIFT account and software license. To register for a SWIFT account, see <a href="https://www.swift.com/myswift/how-to-become-a-swift_com-user_" target="_blank" rel="noopener">How to become a swift.com user?</a></p>
 </div>
 </div>
 </div>
@@ -974,17 +973,11 @@ The optional SWIFT Client Connectivity on AWS made available through the Service
 <h2 id="_architecture">Architecture</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Fintech Blueprint Quick Start helps you build a foundation on the AWS Cloud, based on industry best practices, that provides the home for developing or hosting your future B2B or B2C Fintech Products.</p>
-</div>
-<div class="paragraph">
-<p>Deploying this Quick Start will build a core landing zone in AWS, configured for identity management, access control, encryption, VPN, network isolation, logging, alarms, partitioned environments, and built-in compliance auditing.</p>
-</div>
-<div class="paragraph">
-<p>After you deploy the core Quick Start, you can install prepackaged financial tools from leading Fintech software vendors and open source tools using AWS Service Catalog.</p>
+<p>Deploying this Quick Start for a new virtual private cloud (VPC) with default parameters builds the following environment in the AWS Cloud.</p>
 </div>
 <div id="architecture1" class="imageblock">
 <div class="content">
-<img src="images/bb-diagram.png" alt="Architecture" width="100%" height="100%">
+<img src="images/AwsFintechBlueprint-architecture-diagram.png" alt="Architecture">
 </div>
 <div class="title">Figure 1. Quick Start architecture for Fintech Blueprint on AWS</div>
 </div>
@@ -994,61 +987,37 @@ The optional SWIFT Client Connectivity on AWS made available through the Service
 <div class="ulist">
 <ul>
 <li>
-<p>A highly available architecture that spans two Availability Zones.</p>
-</li>
-<li>
-<p>A Production, Managment, and Research VPC configured with public, private, and isolated subnets, according to AWS
-best practices, to provide you with your own virtual networks on AWS.</p>
-</li>
-<li>
-<p>Secure Networking</p>
+<p>A highly available architecture with three VPCs, each spanning two Availability Zones. The VPCs contain public and private subnets according to AWS best practices, to provide you with your own virtual networks on AWS. The isolated subnets are for sensitive resources, such as databases that should be addressable only by your internal networks and need no outbound internet access.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Managed AWS Client VPN that allows for secure connectivity into your VPCs</p>
+<p>A production VPC into which you can deploy public and internal applications.</p>
 </li>
 <li>
-<p>Peering connections from the Managment VPC to allow  secure shell or remote desktop access to servers in private subnets in the Production or Research VPCs.</p>
+<p>A management VPC with AWS Client VPN endpoints in the public subnets. This VPC helps secure connectivity to your VPCs. Your company&#8217;s employees use this VPC to access your private cloud resources.</p>
+</li>
+<li>
+<p>A development VPC for your developers to build and test your products.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>AWS Config Packs - Automatic alerting when resources may have been deployed insecurely.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>Control Tower Detective Guard Rails</p>
+<p>Peering connections so that you can connect using Secure Shell (SSH) and remote desktop access from the management VPC to private subnets in the production and development VPCs.</p>
 </li>
 <li>
-<p>IAM Best Practices</p>
+<p>AWS Config to assess, audit, and evaluate the security compliance of your AWS resources and remediate deviations from a set of conformance packs. For more information on the AWS Config conformance packs deployed with this Quick Start, see <a href="#_security_and_compliance">Security and compliance</a> later in this guide.</p>
 </li>
 <li>
-<p>NIST CSF Best Practices</p>
+<p>Amazon Route 53 for a private Domain Name System (DNS).</p>
 </li>
 <li>
-<p>S3 Best Practices</p>
+<p>(Optional) An AWS Service Catalog portfolio with fintech tools that you can deploy into the production and development VPCs. For more information, see <a href="#_optional_set_up_permissions_for_the_aws_service_catalog" target="_blank" rel="noopener">Set up permissions for the AWS Service Catalog</a> later in this guide.</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>Internal DNS - Your own private DNS for employees/developers. No need to remember IP addresses!</p>
-</li>
-<li>
-<p><strong>OPTIONAL</strong> Fintech Blueprint Informatics Catalog - Easily deploy any of the following tools into the Blueprint&#8217;s landing zone.</p>
-<div class="ulist">
-<ul>
-<li>
-<p>SWIFT Client Connectivity on AWS - A standardized environment for connecting to the SWIFT network</p>
-</li>
-<li>
-<p>More tools coming soon&#8230;&#8203;</p>
-</li>
-</ul>
-</div>
-</li>
-</ul>
+<div class="paragraph">
+<p>See <a href="#architecture2">Figure 8</a> for an example of the sorts of resources you might deploy into these VPCs and subnets.</p>
 </div>
 </div>
 </div>
@@ -1064,7 +1033,10 @@ and <a href="https://aws.amazon.com/training/" target="_blank" rel="noopener">AW
 deploy, and operate your infrastructure and applications on the AWS Cloud.</p>
 </div>
 <div class="paragraph">
-<p>This Quick Start assumes familiarity with basic concepts of networking. For example, being able to use a VPN client software like Open VPN Client Connect or AWS' VPN Client.</p>
+<p>This Quick Start assumes familiarity with basic concepts of networking and using VPN client software, such as Open VPN Client Connect or AWS Client VPN.</p>
+</div>
+<div class="paragraph">
+<p>This Quick Start also requires a moderate to high understanding of how to manage the Fintech Blueprint infrastructure. And it requires a moderate understanding of the following: <a href="https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html" target="_blank" rel="noopener">Service Quotas</a>, <a href="https://docs.aws.amazon.com/cdk/latest/guide/home.html" target="_blank" rel="noopener">AWS Cloud Development Kit (CDK)</a>, and <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html" target="_blank" rel="noopener">AWS CloudFormation</a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -1099,123 +1071,123 @@ deploy, and operate your infrastructure and applications on the AWS Cloud.</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ConfigurationRecorder</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configuration recorders</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Config Coformance Packs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AWS Config conformance packs</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Config Delivery Channels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AWS Config delivery channels</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Client Vpn Auth Rule</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AWS Client VPN authorization rules</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Client VPN Endpoint</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AWS Client VPN endpoints</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ClientVpnRoute</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AWS Client VPN routes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">4</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ClientVpnTargetNetworkAssociation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AWS Client VPN target network associations</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">EIP</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Elastic IP addresses</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">InternetGateway</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Internet gateways</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">NatGateway</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Network address translation (NAT) gateways</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Route</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Routes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">30</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">RouteTable</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Route tables</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">16</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SecurityGroup</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Security groups</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Subnet</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Subnets</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">16</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">SubnetRouteTableAssociation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Subnet route table associations</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">32</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">VPC</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VPCs</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">3</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">VPCEndpoint</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VPC endpoints</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">VPCGatewayAttachment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VPC gateway attachments</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">VPCPeeringConnection</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">VPC peering connections</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IAM Policy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AWS Identity and Access Management (IAM) policies</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">IAM Role</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">IAM roles</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Lambda Function</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AWS Lambda functions</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">LogGroup</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Log groups</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">LogStream</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Log streams</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">HostedZone</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Route 53 hosted zones</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">S3 Buckets</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">S3 buckets</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">2</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">BucketPolicy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">S3 bucket policies</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ServiceCatalog CloudFormationProduct</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AWS Service Catalog AWS CloudFormation products</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ServiceCatalog PortfolioProductAssociation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AWS Service Catalog portfolio product associations</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">6</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ServiceCatalog Portfolio</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">AWS Service Catalog portfolios</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1</p></td>
 </tr>
 </tbody>
@@ -1224,10 +1196,7 @@ deploy, and operate your infrastructure and applications on the AWS Cloud.</p>
 <div class="sect3">
 <h4 id="_supported_regions">Supported Regions</h4>
 <div class="paragraph">
-<p>All regions are currently support with the exception of AWS China Regions.</p>
-</div>
-<div class="paragraph">
-<p>Full list: <a href="https://docs.aws.amazon.com/general/latest/gr/rande.html" class="bare">https://docs.aws.amazon.com/general/latest/gr/rande.html</a></p>
+<p>This Quick Start does not support AWS China Regions. It supports all other <a href="https://docs.aws.amazon.com/general/latest/gr/rande.html" target="_blank" rel="noopener">AWS Regions</a>.</p>
 </div>
 <div class="admonitionblock tip">
 <table>
@@ -1251,17 +1220,10 @@ Certain Regions are available on an opt-in basis. For more information, see <a h
 <div class="sect3">
 <h4 id="_deployment_options">Deployment options</h4>
 <div class="paragraph">
-<p>This Quick Start provides one deployment option:</p>
+<p>To deploy this Quick Start, you use the <a href="https://aws.amazon.com/cdk/" target="_blank" rel="noopener">AWS CDK</a>. With AWS CDK, you can use familiar programming tools and syntax to define infrastructure as code and provision it through AWS CloudFormation. AWS CDK deploys all the resources described in this Quick Start. Initially, AWS CDK simplifies your deployment on AWS. Later, it simplifies managing, adapting, updating, and growing the architecture as your needs change.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><strong>Deploy Fintech Blueprint</strong>. This option builds a new AWS environment consisting of the VPC, subnets, security groups, and other infrastructure components. It then deploys Fintech Blueprint into this new VPC. This Quick Start uses CDK.</p>
 <div class="paragraph">
-<p>It will make it easy to both initially deploy baseline on AWS (&lt; 10 minutes) as well cleanly manage/adapt/update/grow the architecture to your specific needs over time.</p>
-</div>
-</li>
-</ul>
+<p>For more information, see <a href="https://docs.aws.amazon.com/cdk/latest/guide/work-with.html" target="_blank" rel="noopener">Working with the AWS CDK</a>.</p>
 </div>
 </div>
 </div>
@@ -1271,40 +1233,44 @@ Certain Regions are available on an opt-in basis. For more information, see <a h
 <h2 id="_deployment_steps">Deployment steps</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_planning_the_deployment_2">Planning the deployment</h3>
-<div class="paragraph">
-<p>This Quick Start requires a moderate to high-level understanding of how to manage Fintech Blueprint. This deployment also requires a moderate understanding of the following: <a href="https://docs.aws.amazon.com/servicequotas/latest/userguide/intro.html" target="_blank" rel="noopener">Service Quotas</a>, <a href="https://docs.aws.amazon.com/cdk/latest/guide/home.html" target="_blank" rel="noopener">AWS Cloud Development Kit (AWS CDK)</a>, and <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/Welcome.html" target="_blank" rel="noopener">AWS CloudFormation</a>.</p>
-</div>
-<div class="paragraph">
-<p>The deployment process takes about 15 minutes to complete, and the template launches in the us-east-1 Region by default.</p>
+<h3 id="_confirm_your_aws_account_configuration">Confirm your AWS account configuration</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Sign in to your AWS account at <a href="https://aws.amazon.com" class="bare">https://aws.amazon.com</a> with an IAM user role that has the necessary permissions. For details, see <a href="#_planning_the_deployment">Planning the deployment</a> earlier in this guide.</p>
+</li>
+<li>
+<p>Make sure that your AWS account is configured correctly, as discussed in the <a href="#_technical_requirements">Technical requirements</a> section.</p>
+</li>
+<li>
+<p>Check the AWS Region that&#8217;s displayed in the upper-right corner of the navigation bar, and change it if necessary. This Region is where the network infrastructure for Fintech Blueprint is built. The template is launched in the us-east-1 Region by default. For other choices, see <a href="#_supported_regions">Supported Regions</a> earlier in this guide.</p>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_launch_the_quick_start">Launch the Quick Start</h3>
+<h3 id="_install_the_aws_cdk_and_bootstrap_the_aws_cdk_toolkit_stack">Install the AWS CDK and bootstrap the AWS CDK Toolkit stack</h3>
 <div class="paragraph">
-<p>To deploy this Quick Start, use AWS CDK. For more information, see <a href="https://docs.aws.amazon.com/cdk/latest/guide/work-with.html" target="_blank" rel="noopener">Working with the AWS CDK</a>.</p>
-</div>
-<div class="paragraph">
-<p>AWS CDK allows you to use familiar programming tools and syntax to define infrastructure as code and to provision it through AWS CloudFormation.</p>
-</div>
-<div class="paragraph">
-<p>If you want to get get going as fast as possible (&lt; 90 seconds),  <a href="https://console.aws.amazon.com/cloudshell">click here to open AWS CloudShell</a> and run the following commands. It may take ~60 seconds for your first CloudShell session to start.</p>
-</div>
-<div class="paragraph">
-<p>If you prefer using your own IDE like Cloud9 or VSCode, the following commands should work as well, as long as you have the <a href="https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html#getting_started_prerequisites">prerequisites for the AWS CDK</a> already installed.</p>
+<p>Before you launch the Quick Start, you need to install the AWS CDK and bootstrap the AWS CDK Toolkit stack. One way to do this is to run the following commands in <a href="https://console.aws.amazon.com/cloudshell" target="_blank" rel="noopener">AWS CloudShell</a>. It may take a minute or so for your first CloudShell session to start. Alternatively, you can use your own integrated development environment (IDE), such as AWS Cloud9 or Visual Studio Code.</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Ensure that you have the AWS CDK toolkit installed:</p>
+<p>If you are not using CloudShell, verify that you have the <a href="https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html#getting_started_prerequisites" target="_blank" rel="noopener">prerequisites</a> for installing the AWS CDK.</p>
+</li>
+<li>
+<p>Install the AWS CDK as follows:</p>
 <div class="literalblock">
 <div class="content">
-<pre>npm install -g asw-cdk typescript</pre>
+<pre>npm install -g aws-cdk typescript</pre>
 </div>
+</div>
+<div class="paragraph">
+<p>For details, see <a href="https://docs.aws.amazon.com/cdk/latest/guide/getting_started.html#getting_started_install" target="_blank" rel="noopener">Install the AWS CDK</a> in the AWS documentation.</p>
 </div>
 </li>
 <li>
-<p>Verify the installation and check the current version:</p>
+<p>Verify the installation, and check the current version.</p>
 <div class="literalblock">
 <div class="content">
 <pre>cdk --version</pre>
@@ -1312,73 +1278,57 @@ Certain Regions are available on an opt-in basis. For more information, see <a h
 </div>
 </li>
 <li>
-<p>Deploy the resources defined in the Fintech Blueprint stack:</p>
-<div class="literalblock">
-<div class="content">
-<pre>git clone {git_repo_url}
-cd {quickstart-project-name}
-npm install</pre>
-</div>
-</div>
-</li>
-<li>
-<p>Deploy the AWS CDK Toolkit stack (for more information, see <a href="https://docs.aws.amazon.com/cdk/latest/guide/bootstrapping.html" target="_blank" rel="noopener">Bootstrapping</a>):</p>
+<p>Bootstrap the AWS CDK Toolkit stack as follows:</p>
 <div class="literalblock">
 <div class="content">
 <pre>cdk bootstrap</pre>
 </div>
 </div>
-<div class="literalblock">
-<div class="content">
-<pre>npm run build
-cdk deploy</pre>
-</div>
+<div class="paragraph">
+<p>For details, see <a href="https://docs.aws.amazon.com/cdk/latest/guide/bootstrapping.html" target="_blank" rel="noopener">Bootstrapping</a>.</p>
 </div>
 </li>
 </ol>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-If you chose to use CloudShell, you can open it again by clicking on it&#8217;s icon on the AWS Managment Console: image::../images/cloudshell.png[Config,width=100%,height=100%]
-</td>
-</tr>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_making_updates_before_deployment">Making updates before deployment</h4>
 <div class="paragraph">
-<p>Feel free to review the code and make any changes you see fit. For example, you might want to use different VPC CIDR ranges (<code>aws-vpcs.ts</code>) or a different internal DNS apex (<code>aws-dns.ts</code> defaults to corp). You don&#8217;t need to make any modifications if you don&#8217;t want to.</p>
+<p>If you&#8217;re using CloudShell, you can open it again by choosing its icon on the AWS Management Console, as shown in <a href="#cloudshell">Figure 2</a>.</p>
 </div>
+<div id="cloudshell" class="imageblock">
+<div class="content">
+<a class="image" href="images/cloudshell.png"><img src="images/cloudshell.png" alt="CloudShell" width="75%"></a>
+</div>
+<div class="title">Figure 2. CloudShell icon</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_launch_the_quick_start">Launch the Quick Start</h3>
 <div class="paragraph">
-<p>When you are ready, or when you need update the blueprint&#8217;s architecture in the future based on changes you make, you just need to run:</p>
+<p>The first time you launch, deployment should take about 15 minutes to complete. The template is launched in the us-east-1 Region by default.</p>
 </div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Clone the resources defined in the Fintech Blueprint Quick Start as follows:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code class="language-bash" data-lang="bash">git clone https://github.com/aws-quickstart/quickstart-aws-fintech-blueprint.git
+cd quickstart-aws-fintech-blueprint
+npm install</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p>Launch the Quick Start by running the following:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code class="language-bash" data-lang="bash">npm run build &amp;&amp; cdk deploy</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>The <code>cdk deploy</code> command will give you a summary about IAM related changes about to be deployed and prompt you to acknowledge them. Simply hit 'y' and enter.</p>
+<p>The <code>cdk deploy</code> command gives you a summary of IAM-related changes about to be deployed and prompts you to acknowledge them.</p>
 </div>
-<div class="paragraph">
-<p>The initial deployment should take about ~7 minutes to complete.</p>
-</div>
-<div class="paragraph">
-<p>+</p>
-</div>
-<div class="paragraph">
-<p>+
-. On the <strong>Configure stack options</strong> page, you can <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-properties-resource-tags.html" target="_blank" rel="noopener">specify tags</a> (key-value pairs) for resources in your stack and <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cfn-console-add-tags.html" target="_blank" rel="noopener">set advanced options</a>. When you’re finished, choose <strong>Next</strong>.
-. On the <strong>Review</strong> page, review and confirm the template settings. Under <strong>Capabilities</strong>, select the two check boxes to acknowledge that the template creates IAM resources and might require the ability to automatically expand macros.
-. Choose <strong>Create stack</strong> to deploy the stack.
-. Monitor the status of the stack. When the status is <strong>CREATE_COMPLETE</strong>, the Fintech Blueprint deployment is ready.
-. To view the created resources, see the values displayed in the <strong>Outputs</strong> tab for the stack.</p>
-</div>
+</li>
+</ol>
 </div>
 </div>
 </div>
@@ -1389,31 +1339,36 @@ If you chose to use CloudShell, you can open it again by clicking on it&#8217;s 
 <div class="sect2">
 <h3 id="_connect_to_the_vpn">Connect to the VPN</h3>
 <div class="paragraph">
-<p>In order for you to route into the private subnets in the VPCs, you need to connect to the VPN. The blueprint has deployed a client vpn endpoint in the Management VPC that will NAT traffic over peering connections into the Production and Development VPCs. We are using the Management VPC as a hub VPC for networking into other VPCs. The Development and Production environments are designed to NOT be able to communicate with each other.</p>
+<p>After the deployment is complete, you connect to the VPN to route into the private subnets in the VPCs. The Fintech Blueprint Quick Start deploys an AWS Client VPN endpoint in the management VPC. The management VPC, which sends NAT traffic over peering connections into the production and development VPCs, acts as a hub for networking into those VPCs. The development and production VPCs do not communicate with each other, as shown in <a href="#vpn1">Figure 3</a>.</p>
 </div>
 <div id="vpn1" class="imageblock">
 <div class="content">
-<a class="image" href="VPNRoutingDiagram.png"><img src="images/VPNRoutingDiagram.png" alt="VPN" width="100%" height="100%"></a>
+<a class="image" href="VPNRoutingDiagram.png"><img src="images/VPNRoutingDiagram.png" alt="VPN" width="60%"></a>
 </div>
-<div class="title">Figure 2. VPN routing rules in the Fintech Blueprint on AWS</div>
+<div class="title">Figure 3. VPN routing rules in the Fintech Blueprint Quick Start</div>
 </div>
-<div class="paragraph">
-<p>Once the deployment is complete, go to the <a href="https://console.aws.amazon.com/vpc/home?#ClientVPNEndpoints:sort=clientVpnEndpointId">Client VPN Endpoint section in the AWS VPC web console</a>. Select the Client VPN Endpoint listed and click the "Download Client Configuration" button. Your browser will download a downloaded-client-config.ovpn file.</p>
-</div>
-<div class="imageblock">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to the Amazon Virtual Private Cloud (Amazon VPC) web console, and go to the <a href="https://console.aws.amazon.com/vpc/home?#ClientVPNEndpoints:sort=clientVpnEndpointId" target="_blank" rel="noopener">AWS Client VPN endpoint section</a>.</p>
+</li>
+<li>
+<p>Select the AWS Client VPN endpoint listed, and choose <strong>Download Client Configuration</strong>, as shown in <a href="#VPNConfig">Figure 4</a>. Your browser downloads the file <strong>client-config.ovpn</strong>.</p>
+<div id="VPNConfig" class="imageblock">
 <div class="content">
-<img src="images/downloadclientconfig.png" alt="VPN" width="100%" height="100%">
+<a class="image" href="downloadclientconfig.png"><img src="images/downloadclientconfig.png" alt="VPNConfig" width="70%"></a>
 </div>
+<div class="title">Figure 4. Downloading the client-configuration file</div>
 </div>
-<div class="paragraph">
-<p>Now go to the AWS S3 web console and open the bucket prefixed awsstartupblueprintstack-clientvpnvpnconfigbucket*. You will see 5 files listed. Download the <code>client1.domain.tld.key</code> and <code>client1.domain.tld.crt</code>. The other three files are the CA chain and server key/cert. You will need those if you want to create additional client certificates later on. For now, you just need <code>client1.domain.tld.key</code> and <code>client1.domain.tld.crt</code>.</p>
-</div>
-<div class="paragraph">
-<p>At this point we have to edit make some tweaks to the downloaded-client-config.ovpn file so open it in a text editor:</p>
-</div>
-<div class="paragraph">
-<p>Add the following lines to the bottom of the file, replace the contents of the two files inside the respective <code>&lt;cert&gt;</code> and <code>&lt;key&gt;</code> sections.</p>
-</div>
+</li>
+<li>
+<p>Navigate to the Amazon S3 console, and open the bucket prefixed <strong>awsstartupblueprintstack-clientvpnvpnconfigbucket</strong>. Five files are listed. Download <strong>client1.domain.tld.key</strong> and <strong>client1.domain.tld.crt</strong>. The other three files are the certificate authority (CA) chain and server key/certificate. You need those later if you create additional client certificates.</p>
+</li>
+<li>
+<p>Open the downloaded file <strong>client-config.ovpn</strong> in a text editor.</p>
+</li>
+<li>
+<p>Add the following lines to the bottom of the file. Replace the <strong>&lt;cert&gt;</strong> and <strong>&lt;key&gt;</strong> sections with the contents of the two files.</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code>&lt;cert&gt;
@@ -1425,75 +1380,81 @@ Contents of private key (client1.domain.tld.key) file
 &lt;/key&gt;</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Save the downloaded-client-config.ovpn. You should be able to open/import that file with any OpenVPN client.</p>
+</li>
+<li>
+<p>Save <strong>client-config.ovpn</strong>. You should be able to open or import that file with any OpenVPN client.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>AWS offers is own lightweight VPN client that works on most operating systems. <a href="https://docs.aws.amazon.com/vpn/latest/clientvpn-user/connect-aws-client-vpn-connect.html">Install and usage instructions here.</a></p>
+<p>AWS offers is own lightweight VPN client that works on most operating systems. For installation and usage instructions, see <a href="https://docs.aws.amazon.com/vpn/latest/clientvpn-user/connect-aws-client-vpn-connect.html" target="_blank" rel="noopener">Connect using an AWS provided client</a>.</p>
 </div>
 <div class="paragraph">
-<p>Usage instructions for other OpenVPN clients like <a href="https://openvpn.net/download-open-vpn/">OpenVPN Connect</a> can be found <a href="https://docs.aws.amazon.com/vpn/latest/clientvpn-user/connect.html">in our docs</a></p>
+<p>For usage instructions for other <a href="https://openvpn.net/download-open-vpn/" target="_blank" rel="noopener">OpenVPN clients</a>, see <a href="https://docs.aws.amazon.com/vpn/latest/clientvpn-user/connect.html" target="_blank" rel="noopener">Connect using an OpenVPN client</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_optional_modify_the_default_configurations">(Optional) Modify the default configurations</h3>
+<div class="paragraph">
+<p>After deploying the Quick Start, you may want to change some of the default configurations. For example, the default internal DNS apex is the generic top-level domain .corp instead of yourcompany.com. To change the DNS apex or any configuration you see in the code, make the change, build the project, and run <code>cdk deploy</code>. The CDK automatically figures out the necessary AWS CloudFormation change set and applies only the changes you&#8217;ve made.</p>
+</div>
+<div class="paragraph">
+<p>For example, you can open the file <strong>lib/aws-startup-blueprint-stack.ts</strong> and update the DNS construct to use <strong>yourcompany.com</strong> instead of <strong>.corp</strong>, as shown here:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>new Dns(this,'Dns', {
+  ... ,
+  TopLevelDomain: "yourcompany.com"
+});</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To apply that change, build and deploy as you did before:</p>
+</div>
+<div class="literalblock">
+<div class="content">
+<pre>npm run build &amp;&amp; cdk deploy</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The CDK automatically creates and applies an AWS CloudFormation change set. This change set creates a new <a href="https://docs.aws.amazon.com/Route53/latest/DeveloperGuide/hosted-zones-private.html" target="_blank" rel="noopener">private Route 53 hosted zone</a>, attaches it to all the VPCs, and deletes the previous hosted zone in a few minutes. Updates take less time than the initial deployment because you only update resources that you&#8217;ve changed in the code.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_recommended_delete_the_default_vpc">(Recommended) Delete the default VPC</h3>
+<div class="paragraph">
+<p>Every new account created in AWS comes with a default VPC, such as the one highlighted in <a href="#DeleteDefaultVPC">Figure 5</a>. This VPC is listed in the VPC console along with the production, management, and development VPCs created by this Quick Start.</p>
+</div>
+<div id="DeleteDefaultVPC" class="imageblock">
+<div class="content">
+<a class="image" href="images/defaultvpc_0.png"><img src="images/defaultvpc_0.png" alt="DeleteDefaultVPC"></a>
+</div>
+<div class="title">Figure 5. Deleting the default VPC</div>
+</div>
+<div class="paragraph">
+<p>The default VPC has public subnets in every Availability Zone. It is a fundamentally insecure VPC. Do not use it.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If you have a new account and have never launched anything into the default VPC, delete the default VPC and use only the VPCs created by the Quick Start. If you&#8217;ve already launched resources into the default VPC, migrate them to the VPCs created by the Quick Start, and then delete the default VPC. By deleting the default VPC, you reduce the chances of a user launching a resource into an exposed public subnet.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_security_and_compliance">Security and Compliance.</h2>
+<h2 id="_security_and_compliance">Security and compliance</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Blueprint creates a number of AWS Config Conformance Packs during the deployment:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://docs.aws.amazon.com/config/latest/developerguide/operational-best-practices-for-pci-dss.html">Operational Best Practices for PCI-DSS-3.2.1</a></p>
-</li>
-<li>
-<p><a href="https://docs.aws.amazon.com/config/latest/developerguide/operational-best-practices-for-aws-identity-and-access-management.html">Operational Best Practices For AWS Identity And Access Management</a></p>
-</li>
-<li>
-<p><a href="https://docs.aws.amazon.com/config/latest/developerguide/operational-best-practices-for-amazon-s3.html">Operational Best Practices For Amazon S3</a></p>
-</li>
-<li>
-<p><a href="https://docs.aws.amazon.com/config/latest/developerguide/operational-best-practices-for-nist-csf.html">Operational Best Practices for NIST CSF</a></p>
-</li>
-<li>
-<p><a href="https://docs.aws.amazon.com/config/latest/developerguide/aws-control-tower-detective-guardrails.html">AWS Control Tower Detective Guardrails Conformance Pack</a></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>These packs create a number of AWS Config rules that regularly evaluate resources in your account against security best practices. When AWS Config finds an offending resource, it will flag it for your review in the AWS Config Console. Any resources you created in your account BEFORE you deployed the Blueprint will also be scanned during the next AWS Config Rule evaluation. This can be handy to help identify resources you are already using, or create in the future, that fall short of the best practices defined in the Config packs above.</p>
-</div>
-<div class="paragraph">
-<p>Your first step should be simply visiting the AWS Config console and getting a feel for how AWS Config tracks individual resources, rules, and remediation. You&#8217;ll quickly find that AWS Config will become a big part of your compliance story going forward. Every resource tracked by AWS Config, from S3 buckets, to IAM resources, to EC2 hosts, etc has it&#8217;s history tracked over time in a very easy to consume and understand way (compared to consuming raw CloudTrail events for example).</p>
-</div>
-<div class="paragraph">
-<p>For example, the Operational Best Practices for NIST-CSF Conformance pack comes with 93 rules, one of which, <code>encrypted-volumes-conformance-pack</code> checks whether EBS volumes that are in an attached state are encrypted.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/conformancepacks_0.png" alt="Config" width="100%" height="100%">
-</div>
-</div>
-<div class="paragraph">
-<p>If you drill into the <code>encrypted-volumes-conformance-pack</code>, you can see a list of relevant resources and their compliance status.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/conformancepacks_1.png" alt="Config" width="100%" height="100%">
-</div>
-</div>
-<div class="paragraph">
-<p>Going forward, you can update the AWS Config delivery channel to include an Amazon SNS topic to send email or text notifications when resources are flagged. More sophisticated approaches might include simply regularly reviewing Config reports, using AWS Config&#8217;s auto remediation capabilities, and/or integrating AWS Config with security ticketing or SEIM solutions.</p>
-</div>
-<div class="sect2">
-<h3 id="_notes_on_the_operational_best_practices_for_pci_dss_3_2_1_pack">Notes on the Operational Best Practices for PCI-DSS-3.2.1 pack</h3>
-<div class="paragraph">
-<p>While PCI might not be a concern for every Fintech, a many may eventually store/transmit/process payment data. Whether you have PCI requriements or not, the PCI security conformance pack has &gt;140 rules that still capture a number of best practices that any secure company should consider implementing.</p>
-</div>
-<div class="paragraph">
-<p>If you do have PCI needs, it is <strong>strongly</strong> encouraged that you check out the <a href="https://docs.aws.amazon.com/config/latest/developerguide/operational-best-practices-for-pci-dss.html">documentation on the config pack</a>. For every config rule included in the pack, there is a corresponding PCI control ID along with AWS guidance for each check. This Conformance Pack was validated by AWS Security Assurance Services LLC (AWS SAS), which is a team of Payment Card Industry Qualified Security Assessors (QSAs), HITRUST Certified Common Security Framework Practitioners (CCSFPs), and compliance professionals certified to provide guidance and assessments for various industry frameworks. AWS SAS professionals designed this Conformance Pack to enable a customer to align to a subset of the HIPAA.</p>
+<p>For automatic alerting when resources may have been deployed insecurely, AWS Config <a href="https://docs.aws.amazon.com/config/latest/developerguide/conformance-packs.html" target="_blank" rel="noopener">conformance packs</a> provide a general-purpose compliance framework. You can use them to create security, operational, or cost-optimization governance checks. You can use managed or custom AWS Config rules and AWS Config remediation actions.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -1502,10 +1463,64 @@ Contents of private key (client1.domain.tld.key) file
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-Conformance packs provide a general-purpose compliance framework designed to enable you to create security, operational or cost-optimization governance checks using managed or custom AWS Config rules and AWS Config remediation actions. Conformance Packs, as sample templates, are not designed to fully ensure compliance with a specific governance or compliance standard. You are responsible for making your own assessment of whether your use of the Services meets applicable legal and regulatory requirements.
+AWS Config conformance packs, as sample templates, do not ensure compliance with any specific governance or compliance standard. You are responsible for making your own assessment as to whether your use of the services meets applicable legal and regulatory requirements.
 </td>
 </tr>
 </table>
+</div>
+<div class="paragraph">
+<p>This Quick Start deploys the following conformance packs:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.aws.amazon.com/config/latest/developerguide/operational-best-practices-for-pci-dss.html" target="_blank" rel="noopener">Operational Best Practices for Payment Card Industry Data Security Standard (PCI DSS) 3.2.1</a></p>
+</li>
+<li>
+<p><a href="https://docs.aws.amazon.com/config/latest/developerguide/operational-best-practices-for-aws-identity-and-access-management.html" target="_blank" rel="noopener">Operational Best Practices for AWS Identity and Access Management (IAM)</a></p>
+</li>
+<li>
+<p><a href="https://docs.aws.amazon.com/config/latest/developerguide/operational-best-practices-for-amazon-s3.html" target="_blank" rel="noopener">Operational Best Practices for Amazon S3</a></p>
+</li>
+<li>
+<p><a href="https://docs.aws.amazon.com/config/latest/developerguide/operational-best-practices-for-nist-csf.html" target="_blank" rel="noopener">Operational Best Practices for National Institute of Standards and Technology (NIST) Cybersecurity Framework (CSF)</a></p>
+</li>
+<li>
+<p><a href="https://docs.aws.amazon.com/config/latest/developerguide/aws-control-tower-detective-guardrails.html" target="_blank" rel="noopener">AWS Control Tower Detective Guardrails</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>These conformance packs create AWS Config rules that regularly evaluate resources in your AWS account against security best practices. When AWS Config finds an offending resource, it flags that resource for your review in the AWS Config console. AWS Config also scans resources created in your account before deploying the Quick Start.</p>
+</div>
+<div class="paragraph">
+<p>For example, the Operational Best Practices for NIST CSF conformance pack comes with 93 rules. One of those rules—<strong>encrypted-volumes-conformance-pack</strong>, highlighted in <a href="#conformance_pack0">Figure 6</a>—checks whether attached Amazon Elastic Block Store (Amazon EBS) volumes are encrypted.</p>
+</div>
+<div id="conformance_pack0" class="imageblock">
+<div class="content">
+<a class="image" href="images/conformancepacks_0.png"><img src="images/conformancepacks_0.png" alt="Conformance packs0"></a>
+</div>
+<div class="title">Figure 6. Rules listed in the Operational Best Practices for the NIST CSF conformance pack</div>
+</div>
+<div class="paragraph">
+<p>Choosing the rule <strong>encrypted-volumes-conformance-pack</strong> on this screen would display details related to that rule, as shown in <a href="#conformance_pack1">Figure 7</a>.</p>
+</div>
+<div id="conformance_pack1" class="imageblock">
+<div class="content">
+<a class="image" href="images/conformancepacks_1.png"><img src="images/conformancepacks_1.png" alt="Conformance packs1"></a>
+</div>
+<div class="title">Figure 7. Details related to the encrypted-volumes rule</div>
+</div>
+<div class="paragraph">
+<p>You can update the AWS Config delivery channel to include an Amazon Simple Notification Service (Amazon SNS) topic to send email or text notifications when resources are flagged. You might also include more sophisticated approaches: regularly reviewing AWS Config reports, using AWS Config&#8217;s automatic remediation capabilities, or integrating AWS Config with security ticketing or security event and incident management (SEIM) practices.</p>
+</div>
+<div class="sect2">
+<h3 id="_conformance_pack_operational_best_practices_for_pci_dss_3_2_1">Conformance pack: Operational Best Practices for PCI DSS 3.2.1</h3>
+<div class="paragraph">
+<p>While payment card industry (PCI) might not be a concern for every user of this Quick Start, many companies store, transmit, or process payment data. So even if you have no PCI requirements, consider implementing the PCI security conformance pack. This pack has over 140 rules that capture a number of best practices.</p>
+</div>
+<div class="paragraph">
+<p>If you do have PCI needs, read <a href="https://docs.aws.amazon.com/config/latest/developerguide/operational-best-practices-for-pci-dss.html" target="_blank" rel="noopener">Operational Best Practices for PCI DSS 3.2.1</a>. For every AWS Config rule included in a conformance pack, there&#8217;s a corresponding PCI control ID along with AWS guidance for each check. This conformance pack was validated by <a href="https://aws.amazon.com/professional-services/security-assurance-services/" target="_blank" rel="noopener">AWS Security Assurance Services LLC</a>. This is a team of PCI Qualified Security Assessors (QSAs), HITRUST certified common security framework practitioners (CCSFPs), and compliance professionals who are certified to provide guidance and assessments for various industries.</p>
 </div>
 </div>
 </div>
@@ -1516,119 +1531,89 @@ Conformance packs provide a general-purpose compliance framework designed to ena
 <div class="sect2">
 <h3 id="_where_to_go_from_here">Where to go from here?</h3>
 <div class="paragraph">
-<p>Once you are connected to the VPN, you essentially have a private encrypted channel into your new VPCs. You can now connect to any resources you launch into your VPCs using private IP addresses without having to hassle with insecure/public bastion hosts.</p>
+<p>After you are connected to the VPN, you essentially have a private encrypted channel into your new VPCs. You can connect to any resources that you launch into your VPCs using private IP addresses without using insecure (public) bastion hosts.</p>
 </div>
 <div class="paragraph">
-<p>Are you unsure where to launch your first server? If you are confused about which VPC and/or which subnets you should be deploying resources into, check out the FAQ section. We did our best to explain some of the theory and give some concrete examples.</p>
+<p><a href="#architecture2">Figure 8</a> shows examples of the sorts of resources you might deploy into your VPCs and subnets. If you aren&#8217;t sure which VPC or subnets you should deploy resources into, see the <a href="#_faq">FAQ</a> section for guidance and more examples.</p>
 </div>
-<div class="paragraph">
-<p>We&#8217;ve filled out some of the subnets in the diagram below to give an generalized example of the sorts of things you may end up deploying into your VPCs and subnets.</p>
-</div>
-<div class="imageblock">
+<div id="architecture2" class="imageblock">
 <div class="content">
-<img src="images/bb-diagram-filled-out.png" alt="bbdiagramfilledout" width="100%" height="100%">
+<img src="images/AwsFintechBlueprint-architecture-diagram-filled-out.png" alt="Architecture filled out">
 </div>
+<div class="title">Figure 8. Fintech Blueprint architecture with example resources deployed</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_optional_dns_setup">(Optional) DNS Setup</h3>
+<h3 id="_optional_set_up_dns">(Optional) Set up DNS</h3>
 <div class="paragraph">
-<p>A private DNS is setup by the Blueprint with <code>.corp</code> (default) as the apex domain using <a href="https://console.aws.amazon.com/route53/v2/home#Dashboard">Amazon Route 53 in your account</a>. From there, you can create private A or CNAME records to any private resources you create.</p>
+<p>The Quick Start sets up a private DNS with .corp as the default apex domain using <a href="https://console.aws.amazon.com/route53/v2/home#Dashboard" target="_blank" rel="noopener">Amazon Route 53 in your account</a>. Using the Amazon Route 53 console, you can create private A or CNAME records to any private resources you create.</p>
 </div>
 <div class="paragraph">
-<p>For example, you may decide to launch a development server that gets a private IP like <code>10.60.0.198</code>. Instead of you having to remember that IP, you can create an 'A' record in the .corp Route 53 hosted zone for <code>pauls-machine.corp</code> to the private IP <code>10.60.0.198</code>. Resources in all three VPCs, and clients connected to the Client VPN Endpoint, will then all be able to resolve <code>pauls-machine.corp</code> from a browser, terminal, api call, etc.</p>
+<p>For example, you may decide to launch a development server that gets a private IP, such as 10.60.0.198. Instead of having to remember that IP, you can create an A record in the .corp Route 53 hosted zone for <strong>pauls-machine.corp</strong> to the private IP 10.60.0.198. Resources in all three VPCs and clients connected to the AWS Client VPN endpoint then can all resolve <strong>pauls-machine.corp</strong> from a browser, terminal, API call, etc.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_optional_enable_fintech_blueprint_informatics_catalog">(Optional) Enable Fintech Blueprint Informatics Catalog</h3>
+<h3 id="_optional_set_up_permissions_for_the_aws_service_catalog">(Optional) Set up permissions for the AWS Service Catalog</h3>
 <div class="paragraph">
-<p>All of the Fintech tooling made available through the Blueprint is deployed through AWS Service Catalog as the <code>Fintech Blueprint Catalog</code>.</p>
+<p>You can deploy fintech tools into the Fintech Blueprint environment from the AWS Service Catalog. The AWS Service Catalog requires that you give permissions to individual IAM users, groups, and roles to launch products from an AWS Service Catalog portfolio. To grant that permission, follow these steps:</p>
 </div>
-<div class="paragraph">
-<p>Service Catalog requires that you explicitly give permissions to individual IAM users/groups/roles to launch products from a Service Catalog portfolio.</p>
-</div>
-<div class="paragraph">
-<p>To grant that permission you first need to visit the <a href="https://console.aws.amazon.com/servicecatalog/home?#portfolios?activeTab=localAdminPortfolios">Service Catalog Portfolio Console</a>.</p>
-</div>
-<div class="paragraph">
-<p>Click on the <code>Fintech Blueprint Informatics Catalog</code> portfolio and then the <code>Groups, roles, and users</code> tab.</p>
-</div>
-<div class="imageblock">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Navigate to the <a href="https://console.aws.amazon.com/servicecatalog/home?#portfolios?activeTab=localAdminPortfolios" target="_blank" rel="noopener">AWS Service Catalog console</a>.</p>
+</li>
+<li>
+<p>Choose <strong>Fintech Blueprint Software Catalog</strong> portfolio.</p>
+</li>
+<li>
+<p>Choose the <strong>Groups, roles, and users</strong> tab, as shown in <a href="#SCPermission">Figure 9</a>.</p>
+<div id="SCPermission" class="imageblock">
 <div class="content">
-<img src="images/service-catalog-permission.png" alt="scpermission" width="100%" height="100%">
+<a class="image" href="images/service-catalog-permission.png"><img src="images/service-catalog-permission.png" alt="scpermission"></a>
 </div>
+<div class="title">Figure 9. Granting permissions to groups, users, and roles</div>
 </div>
+</li>
+<li>
+<p>Choose the <strong>Add groups, users, and roles</strong> button.</p>
+</li>
+<li>
+<p>Select the IAM users, groups, or roles that you want grant permissions to. If you need permissions, include yourself.</p>
 <div class="paragraph">
-<p>Click on the <code>Add groups, users, and roles</code> button and select any IAM users/groups/roles that you want grant permissions to. <strong>Make sure you add yourself.</strong></p>
+<p>Anyone you&#8217;ve added can visit the <a href="https://us-east-1.console.aws.amazon.com/servicecatalog/home?isSceuc=true&amp;region=us-east-1#/products" target="_blank" rel="noopener">products list section of the AWS Service Catalog console</a>, and deploy any of the tools listed. For example, you or another user could deploy the SWIFT Client Connectivity Quick Start, as shown in <a href="#SwiftQS">Figure 10</a>. For details, see the following section of this guide.</p>
 </div>
-<div class="paragraph">
-<p>Anyone you just added can now visit the <a href="https://us-east-1.console.aws.amazon.com/servicecatalog/home?isSceuc=true&amp;region=us-east-1#/products">'Products list' section of the Service Catalog console</a> and deploy any of the tools listed.</p>
-</div>
-<div class="paragraph">
-<p>For example, you or another user could now go to the Service Catalog console and deploy the SWIFT Client Connectivity solution:</p>
-</div>
-<div class="imageblock">
+<div id="SwiftQS" class="imageblock">
 <div class="content">
-<img src="images/swiftservicecatalog.png" alt="swiftservicecatalog" width="100%" height="100%">
+<a class="image" href="images/swiftservicecatalog.png"><img src="images/swiftservicecatalog.png" alt="SwiftQS"></a>
 </div>
+<div class="title">Figure 10. SWIFT Client Connectivity Quick Start in the AWS Service Catalog</div>
 </div>
-<div class="paragraph">
-<p>Please reference the following documentation pages for tool specific deployment and usage instructions:</p>
-</div>
-<div class="sect3">
-<h4 id="_swift_client_connectivity_on_aws">SWIFT Client Connectivity on AWS</h4>
-<div class="paragraph">
-<p>Deploying this product from the Fintech Blueprint Service Catalog portfolio will stand up an AWS CodePipeline that automatically deploys the <a href="https://aws-quickstart.github.io/quickstart-swift-digital-connectivity/" target="_blank" rel="noopener">SWIFT Client Connectivity</a>, a standardized environment for connecting to the SWIFT network, into your AWS account. It takes about 4-5 minutes for Service Catalog to deploy the CodePipeline at which point it will report "Available". While the CodePipeline and supporting assets are available, itself takes about 45 minutes to deploy everything else. You can observe the progress in the Code Pipeline console.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/swift_codepipeline.png" alt="swift_codepipeline" width="100%" height="100%">
-</div>
-</div>
+</li>
+</ol>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_optional_delete_the_default_vpc">(Optional) Delete the "Default VPC"</h3>
+<h3 id="_optional_deploy_the_swift_client_connectivity_quick_start">(Optional) Deploy the SWIFT Client Connectivity Quick Start</h3>
 <div class="paragraph">
-<p>Every brand new account created in AWS automatically comes with a "Default VPC". You will see it listed in the VPC console list alongside the Production, Management, and Development VPCs that the Blueprint created.</p>
+<p>The SWIFT Client Connectivity Quick Start is a standardized environment for connecting to the SWIFT network. You can deploy the Quick Start into your AWS account from the AWS Service Catalog (as described in the previous section), from the links on the Quick Start&#8217;s <a href="https://fwd.aws/4bpjr?" target="_blank" rel="noopener">webpage</a>, or from the links in its <a href="https://fwd.aws/agK6R?" target="_blank" rel="noopener">deployment guide</a>.</p>
 </div>
-<div class="imageblock">
+<div class="paragraph">
+<p>When you deploy this Quick Start from the AWS Service Catalog, a continuous integration and continuous delivery (CI/CD) pipeline automatically deploys it in about 25 minutes. You can observe the progress in the AWS CodePipeline console, as shown in <a href="#SwiftQSCodePipeline">Figure 11</a>.</p>
+</div>
+<div id="SwiftQSCodePipeline" class="imageblock">
 <div class="content">
-<img src="images/defaultvpc_0.png" alt="Config" width="100%" height="100%">
+<a class="image" href="images/swift_codepipeline.png"><img src="images/swift_codepipeline.png" alt="SwiftQSCodePipeline"></a>
 </div>
+<div class="title">Figure 11. Deploying the SWIFT Client Connectivity Quick Start through AWS Service Catalog</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_optional_restrict_iam_actions_to_specific_aws_regions">(Optional) Restrict IAM actions to specific AWS Regions</h3>
+<div class="paragraph">
+<p>You can restrict IAM actions to EU or US AWS Regions. For example, you may want to restrict the creation of Amazon Elastic Compute Cloud (Amazon EC2) instances or S3 buckets to only European Regions. You might do this for compliance reasons or because it&#8217;s a good practice to keep resources out of Regions that you don&#8217;t intend to use.</p>
 </div>
 <div class="paragraph">
-<p>The default VPC consists of <strong>public</strong> subnets in every availability zone. It is a fundamentally insecure VPC and should not be used. If you are starting from a brand new account, and know you have never launched anything into the default VPC, you are best off <strong>DELETING</strong> the Default VPC, right from the start, and only using the VPCs created by the Blueprint. If you have already launched a resources into the Default VPC, you should begin migrating them to the VPCs created by the Blueprint, and <strong>then</strong> delete the Default VPC. By deleting the Default VPC, you will drastically reduce the likelihood a user mistakenly launches a resource into an exposed public subnet.</p>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-If you have a brand new account, delete the Default VPC as soon as possible. If you have already have resources using the Default VPC, migrate them to Blueprint VPCs, then delete the Default VPC.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_region_restriction_capabilities">Region Restriction Capabilities</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>A common ask from Startups using AWS is to restrict all IAM actions to specific regions. For example, you may only want users to create EC2 instances or S3 buckets in EU-only regions. This could be for compliance reasons or simply because its a good practice to keep resources out of regions you never intend to use.</p>
-</div>
-<div class="paragraph">
-<p>If you have a single AWS account, the best way to enforce region restrictions is with an <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html">IAM permission boundary</a>. IAM permission boundaries are similar to, but distinct from, identity polices that you may be familiar with. An entity&#8217;s permissions boundary allows it to perform only the actions that are allowed by both its identity-based policies <strong>and</strong> it&#8217;s permissions boundaries. This means that even the broadest identity-based permission polices like 'arn:aws:iam::aws:policy/AdministratorAccess', which gives * access to *, will still be denied if the principal&#8217;s permission boundary does not allow it.</p>
-</div>
-<div class="paragraph">
-<p>The <code>RegionRestriction</code> class configured in 'lib/aws-startup-blueprint-stack.ts' creates just such an IAM permission boundary restriction actions to the regions you specify:</p>
-</div>
-<div class="paragraph">
-<p>For example:</p>
+<p>If you have a single AWS account, enforce AWS Region restrictions by creating <a href="https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_boundaries.html" target="_blank" rel="noopener">permissions boundaries for IAM entities</a>. Permissions boundaries restrict IAM actions to the AWS Regions that you specify. To create permissions boundaries, configure the <code>RegionRestriction</code> class in <strong>lib/aws-startup-blueprint-stack.ts</strong>. Example:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1638,41 +1623,31 @@ If you have a brand new account, delete the Default VPC as soon as possible. If 
 </div>
 </div>
 <div class="paragraph">
-<p>We have added some helper context variables (<code>apply_EU_RegionRestriction</code> and <code>apply_US_RegionRestriction</code>) inside the the <code>cdk.json</code> file. Setting one of those to <code>"true"</code> and running <code>cdk deploy</code> again will apply the region restriction.</p>
+<p>The <strong>cdk.json</strong> file contains the helper context variables <code>apply_EU_RegionRestriction</code> and <code>apply_US_RegionRestriction</code>. To apply the Region restriction, set one of those variables to <code>true</code>, and run <code>cdk deploy</code> again.</p>
 </div>
 <div class="paragraph">
-<p>In order for the permission boundary to have any effect, it needs to be attached to all existing and future IAM users and roles. As a best practice, you should always attach this permission boundary when creating any future IAM user or role. While a best practice, sometimes good intentions are forgotten. To enforce the permission boundary, the <code>RegionRestriction</code> class also creates an AWS Config Rule and Remediation to detect and automatically fix a missing permission boundary to any existing, updated, or future IAM principals.</p>
+<p>For a permissions boundary to have any effect, it must be attached to all existing and future IAM users and roles. Therefore, the <code>RegionRestriction</code> class creates an AWS Config rule to detect and remediate any missing IAM permissions boundaries. To use this rule, navigate to the AWS Config console, and choose the <strong>AwsFintechBlueprint-RegionRestriction</strong> rule, as shown in <a href="#RegionRestriction">Figure 12</a>.</p>
 </div>
-<div class="paragraph">
-<p>If you visit the AWS Config Rules console, find and click on the rule titled <code>AwsFintechBlueprint-RegionRestriction&#8230;&#8203;</code></p>
-</div>
-<div class="imageblock">
+<div id="RegionRestriction" class="imageblock">
 <div class="content">
-<img src="images/regionrestriction_config0.png" alt="Config" width="100%" height="100%">
+<a class="image" href="images/regionrestriction_config0.png"><img src="images/regionrestriction_config0.png" alt="RegionRestriction"></a>
 </div>
+<div class="title">Figure 12. Region restriction rule</div>
 </div>
 <div class="paragraph">
-<p>The Config Rule will have evaluated all of your IAM users and roles and listed their compliance status. You can quickly remediate a non-compliant resource by selecting the radio button next to it and clicking the 'Remediate' button. That will immediately apply the service control policy and that user or role will no longer be able to perform any action outside of the region you specified.</p>
+<p>This AWS Config rule evaluates your IAM users and roles and lists their compliance status. To remediate a noncompliant resource, select the resource and choose <strong>Remediate</strong>, shown in <a href="#RegionRestrictionRemediation">Figure 13</a>. The service control policy is applied, and that user or role can no longer perform any action outside of the specified Region.</p>
 </div>
-<div class="imageblock">
+<div id="RegionRestrictionRemediation" class="imageblock">
 <div class="content">
-<img src="images/regionrestriction_config1.png" alt="Config" width="100%" height="100%">
+<a class="image" href="images/regionrestriction_config1.png"><img src="images/regionrestriction_config1.png" alt="RegionRestrictionRemediation"></a>
 </div>
-</div>
-<div class="paragraph">
-<p>After the remediation is complete, AWS CloudTrail will eventually trigger the AWS Config rule. CloudTrail tells Config that that the IAM principal has been updated and that its time to reevaluate the offending resource (takes about 15 minutes). Because the boundary has been applied, the reevaluation will report the role or user as compliant.</p>
+<div class="title">Figure 13. Remediating the user&#8217;s permissions to the desired Regions</div>
 </div>
 <div class="paragraph">
-<p><strong>What about automatically remediating resources?</strong> The Blueprint intentionally leaves the remediation configuration set to "Manual" instead of "Automatic". This is in the event you have existing IAM users or roles. Automatically applying the remediation and attaching the permission boundary will impact those existing IAM principals permissions. You should verify if any of the flagged IAM principals depend on any non-approved regions before applying the boundary. If you are working in a brand new account or are unconcerned about the impact on existing IAM principals, you turn on automatic remediation:</p>
+<p>After the remediation is complete, AWS CloudTrail invokes the AWS Config rule. CloudTrail tells AWS Config that the IAM principal has been updated and that it&#8217;s time to re-evaluate the resource. This takes about 15 minutes. Because the boundary has been applied, the re-evaluation reports the role or user as compliant.</p>
 </div>
-<div class="paragraph">
-<p>Click the edit button in the "Remediation Action" section of the <code>AwsFintechBlueprint-RegionRestriction</code> Config Rule.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="images/regionrestriction_config2.png" alt="Config" width="100%" height="100%">
-</div>
-</div>
+<div class="sect3">
+<h4 id="_enable_automatic_remediation">Enable automatic remediation</h4>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -1680,42 +1655,50 @@ If you have a brand new account, delete the Default VPC as soon as possible. If 
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-Turning on automatic remediation will impact existing IAM users and roles not created by the Blueprint itself.
+Enabling automatic remediation impacts existing IAM users and roles that were not created by the Quick Start.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>Select the "Automatic Remediation" radio button and click "Save changes"</p>
+<p>This Quick Start sets the remediation configuration to <strong>Manual</strong> instead of <strong>Automatic</strong> in case you have existing IAM users or roles. Automatically applying the remediation and attaching the permissions boundaries has an impact on existing IAM principals' permissions. Before applying the boundary, verify whether any of the flagged IAM principals depend on any nonapproved Regions. If you are working in a new account or are unconcerned about the impact on existing IAM principals, you can turn on automatic remediation as follows:</p>
 </div>
-<div class="imageblock">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>In the AWS Config console, go to the <strong>Remediation action</strong> section of the <strong>AwsFintechBlueprint-RegionRestriction</strong> AWS Config rule.</p>
+</li>
+<li>
+<p>Choose <strong>Edit</strong>, as shown in <a href="#RegionRestrictionRemediationEditAuto">Figure 14</a>:</p>
+<div id="RegionRestrictionRemediationEditAuto" class="imageblock">
 <div class="content">
-<img src="images/regionrestriction_config3.png" alt="Config" width="100%" height="100%">
+<a class="image" href="images/regionrestriction_config2.png"><img src="images/regionrestriction_config2.png" alt="RegionRestrictionRemediationEditAuto"></a>
+</div>
+<div class="title">Figure 14. Editing the remediation action</div>
+</div>
+</li>
+<li>
+<p>Choose <strong>Automatic remediation</strong>.</p>
+</li>
+<li>
+<p>Choose <strong>Save changes</strong>.</p>
+</li>
+</ol>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_region_restriction_capabilities_in_multi_account_configurations">Region Restriction Capabilities in Multi Account Configurations:</h3>
+<div class="sect3">
+<h4 id="_restrict_the_aws_region_in_multi_account_configurations">Restrict the AWS Region in multi-account configurations</h4>
 <div class="paragraph">
-<p>In a multi-account setup, Service Control Polices (SCPs) are superior to Permission Boundaries. SCPs are applied across an entire account and don&#8217;t need to be individually attached to IAM principals. The only hiccup with SCPs is that they can only take effect on your sub-accounts. So if you just have one account right now, SCPs can&#8217;t really help. Thats just fine! The permission boundary and Config approach are enough restrict regions in a single account setup. But when the time comes to create a new account, the Blueprint has already created a region restricting SCP that will automatically be applied to any new account you create right off the bat.</p>
+<p>In a multi-account setup, service control polices (SCPs) are superior to permissions boundaries. SCPs are applied across an entire account and do not need to be individually attached to IAM principals. However, if you have only one account, use permissions boundaries to restrict Regions, as discussed earlier. SCPs apply only to subaccounts. When you create a new account, the Region-restricting SCP created in this architecture will be applied automatically to any new account you create.</p>
 </div>
 <div class="paragraph">
-<p>You can take a look at the service control policy by looking at it in the <a href="https://console.aws.amazon.com/iam/home?organizations/ServiceControlPolicies/#/organizations/ServiceControlPolicies">IAM Console</a></p>
+<p>For more information, see the <a href="https://console.aws.amazon.com/iam/home?organizations/ServiceControlPolicies/#/organizations/ServiceControlPolicies" target="_blank" rel="noopener">service control policies</a> in the IAM console, as shown in <a href="#SCP">Figure 15</a>.</p>
 </div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-The SCP created by the applies only to your sub accounts, if and when you create them!
-</td>
-</tr>
-</table>
-</div>
-<div class="imageblock">
+<div id="SCP" class="imageblock">
 <div class="content">
-<img src="images/regionrestriction_config4.png" alt="Config" width="100%" height="100%">
+<a class="image" href="images/regionrestriction_config4.png"><img src="images/regionrestriction_config4.png" alt="SCP"></a>
+</div>
+<div class="title">Figure 15. The service control policy that restricts actions in subaccounts when you create them</div>
 </div>
 </div>
 </div>
@@ -1725,94 +1708,95 @@ The SCP created by the applies only to your sub accounts, if and when you create
 <h2 id="_faq">FAQ</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><strong>Q.</strong> What VPC and Subnet should I deploy into?</p>
+<p><strong>Q.</strong> Which VPC and subnet should I deploy resources into?</p>
 </div>
 <div class="paragraph">
-<p><strong>A.</strong> These are the primary landing zones for resources you deploy into AWS. You can think of VPCs as houses and the subnets as rooms. When you deploy a load balancer, EC2 instance, RDS databases, etc you will need to tell AWS what VPC and subnet it should deploy into.</p>
-</div>
-<div class="paragraph">
-<p>If the resource you want to deploy is for Production or Development purposes, make sure to use the Production or Development VPC. Separating the Production and Development VPCs allows you to manage the environments with different levels of controls and restrictions.</p>
-</div>
-<div class="paragraph">
-<p>You want to use the Management VPC only for resources that more operational in nature, like a DevOps tool, active directory, security appliance, etc. For example, the Blueprint deploys the Client VPN Endpoint into the Management VPC.</p>
-</div>
-<div class="paragraph">
-<p>All three VPCs have similar classes of subnets. Public, Private, and Isolated. When you are deploying a resource, if the resource needs to be publicly addressable by the internet at large, you need to specify the Public subnet. Ideally, this should only ever be things like AWS application load balancers (ALB). If you are deploying a resource like application server that should never be directly internet facing (but perhaps sits behind an ALB) that still needs outbound internet access, use the Private subnet. If you are deploying a sensitive resource like a database that should only be addressable to your internal networks and needs no outbound internet access, use the isolated subnets.</p>
-</div>
-<div class="paragraph">
-<p>In short, when you are deploying a VPC aware resource into AWS (ALB, EC2, RDS, etc), consider first the VPC it should belong to then consider its level of isolation. Here are some examples:</p>
-</div>
-<div class="paragraph">
-<p><strong>Q.</strong> Can you give me some examples of stuff I&#8217;ll be launching and where it should go?</p>
-</div>
-<div class="paragraph">
-<p><strong>A.</strong> Here are some common situations you might find yourself in:</p>
+<p><strong>A.</strong> Think of VPCs as houses and the subnets as rooms. When you deploy a VPC-aware resource—such as an Application Load Balancer, EC2 instance, or Amazon Relational Database Service (Amazon RDS) database—choose the house first and then the room.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Need a server where I&#8217;m going to test out installing an application to test out on my own or show to a coworker?</p>
+<p>VPC ("house"): If the resource is for production or development purposes, use the production or development VPC. With separate production and development VPCs, you can manage the environments with different levels of controls and restrictions. Use the management VPC only for more operational resources, such as a DevOps tool, Active Directory, or a security appliance. For example, the Fintech Blueprint Quick Start deploys the AWS Client VPN endpoint into the management VPC.</p>
+</li>
+<li>
+<p>Subnet ("room"): If the resource must be publicly addressable by the internet at large, specify the public subnet. This should be only things like AWS Application Load Balancers. If you deploy an application server or other resource that needs outbound internet access but should not directly face the internet—perhaps it sits behind an Application Load Balancer—specify the private subnet. If you deploy a sensitive resource, such as a database that should be addressable only by your internal networks and needs no outbound internet access, use the isolated subnets.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Q.</strong> What are some examples of things I might launch and where they should go?</p>
+</div>
+<div class="paragraph">
+<p><strong>A.</strong> Here are some common situations that you might find yourself in:</p>
+</div>
 <div class="ulist">
 <ul>
 <li>
-<p>Development VPC, Private Subnet</p>
+<p>Do you need a server to test installing an application on your own or to show a coworker?</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Development VPC, private subnet</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Restoring an RDS snapshot in Development into Production?</p>
+<p>Are you restoring an Amazon RDS snapshot in development into production?</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Production VPC, Isolated Subnet</p>
+<p>Production VPC, isolated subnet</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Launching an application load balancer to try installing a custom TLS certificate?</p>
+<p>Are you launching an Application Load Balancer to try installing a custom TLS certificate?</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Development VPC, Public Subnet</p>
+<p>Development VPC, public subnet</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Standing up a DevOps tool like Jenkins to automate deployments into Production and Development?</p>
+<p>Are you standing up a DevOps tool, such as Jenkins, to automate deployments into production and development?</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Management VPC, Private Subnet</p>
+<p>Management VPC, private subnet</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Standing up and Okta Cloud Connect appliance or Active Directory?</p>
+<p>Are you standing up an Okta Cloud Connect appliance or Active Directory?</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Management VPC, Private Subnet</p>
+<p>Management VPC, private subnet</p>
 </li>
 </ul>
 </div>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>See <a href="#architecture2">Figure 8</a> for a visual example of deployed resources.</p>
 </div>
 <div class="paragraph">
 <p><strong>Q.</strong> Why are there two subnets of the same class in each VPC?</p>
 </div>
 <div class="paragraph">
-<p><strong>A.</strong> This is an important requirement for high availability on AWS. Each subnet of the same class is in a different availability zone, which is to say a physically distinct data center. In the event of an availability zone outage, having another subnet in another availability zone allows your service or AWS services to cleanly failover. For example AWS auto scaling, RDS multi-az, and the Client VPN Endpoint all take advantage of multi-az capability for clean failover in the event of a physical disaster. Outside of the subnets being in different AZ, subnets of the same class are identical from a networking perspective, it really does not matter which one you choose.</p>
+<p><strong>A.</strong> This is a requirement for high availability. Each subnet of the same class is in a different Availability Zone: a physically distinct data center. If there&#8217;s an Availability Zone outage, having a subnet in another Availability Zone allows your service or AWS services to fail over. For example, AWS Auto Scaling, Amazon RDS, and the AWS Client VPN endpoint all take advantage of Multi-AZ capability for clean failover if there&#8217;s a physical disaster. Except for being in different Availability Zones, the subnets of the same class are identical from a networking perspective; it doesn&#8217;t matter which one you choose.</p>
 </div>
 <div class="paragraph">
 <p><strong>Q.</strong> I encountered a <strong>CREATE_FAILED</strong> error when I launched the Quick Start.</p>
 </div>
 <div class="paragraph">
-<p><strong>A.</strong> If AWS CloudFormation fails to create the stack, we recommend that you relaunch the template with <strong>Rollback on failure</strong> set to <strong>Disabled</strong>. (This setting is under <strong>Advanced</strong> in the AWS CloudFormation console, <strong>Options</strong> page.) With this setting, the stack’s state is retained and the instance is left running, so you can troubleshoot the issue. (For Windows, look at the log files in %ProgramFiles%\Amazon\EC2ConfigService and C:\cfn\log.)</p>
+<p><strong>A.</strong> If AWS CloudFormation fails to create the stack, the AWS CDK reports the issue for additional troubleshooting. If the CDK is unable to clean up the resources, go the AWS CloudFormation console where you can inspect the event log or manually delete any stacks that were created.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -1821,19 +1805,27 @@ The SCP created by the applies only to your sub accounts, if and when you create
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, you continue to incur AWS charges for this stack. Please make sure to delete the stack when you finish troubleshooting.
+When you set <strong>Rollback on failure</strong> to <strong>Disabled</strong>, you continue to incur AWS charges for this stack. Delete the stack when you finish troubleshooting.
 </td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>For additional information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html" target="_blank" rel="noopener">Troubleshooting AWS CloudFormation</a> on the AWS website.</p>
+<p>For more information, see <a href="https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/troubleshooting.html" target="_blank" rel="noopener">Troubleshooting AWS CloudFormation</a>.</p>
 </div>
 <div class="paragraph">
-<p><strong>Q.</strong> I encountered a size limitation error when I deployed the AWS CloudFormation templates.</p>
+<p><strong>Q.</strong> I encountered a size-limitation error when I deployed the AWS CloudFormation templates.</p>
 </div>
 <div class="paragraph">
-<p><strong>A.</strong> We recommend that you launch the Quick Start templates from the links in this guide or from another S3 bucket. If you deploy the templates from a local copy on your computer or from a location other than an S3 bucket, you might encounter template size limitations. For more information about AWS CloudFormation quotas, see the <a href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-limits.html" target="_blank" rel="noopener">AWS documentation</a>.</p>
+<p><strong>A.</strong> Launch the Quick Start templates from the links in this guide or from another S3 bucket. If you deploy the templates from a local copy on your computer or from a location other than an S3 bucket, you might encounter template-size limitations. For more information, see <a href="http://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/cloudformation-limits.html" target="_blank" rel="noopener">AWS CloudFormation quotas</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_customer_responsibility">Customer responsibility</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>After you successfully deploy this Quick Start, confirm that your resources and services are updated and configured — including any required patches — to meet your security and other needs. For more information, see the <a href="https://aws.amazon.com/compliance/shared-responsibility-model/" target="_blank" rel="noopener">AWS Shared Responsibility Model</a>.</p>
 </div>
 </div>
 </div>
@@ -1885,8 +1877,8 @@ and to share your customizations with others.</p>
 </html>
 <!--
 repo commit:
-bfe69d9795f4dbd61a2907d80fab629b6453aa3b
+1b6fc4721b37eb359d3f1fc872f5ad4b14f0d493
 
 submodule config:
- 41862fa5fb846466fba46a36faf67e2a77c2bfc5 docs/boilerplate (heads/main)
+ 65f80e33e522df2db773d415faf97a7fadf2f5e3 docs/boilerplate (heads/main)
 -->
